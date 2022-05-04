@@ -1,0 +1,40 @@
+curl  -k --request POST \
+  --url https://localhost:2746/api/v1/workflows/argo \
+  --header 'content-type: application/json' \
+  --data '{
+  "namespace": "argo",
+  "serverDryRun": false,
+  "workflow": {
+      "metadata": {
+        "generateName": "hello-world-",
+        "namespace": "argo",
+        "labels": {
+          "workflows.argoproj.io/completed": "false"
+         }
+      },
+     "spec": {
+       "templates": [
+        {
+         "name": "whalesay",
+         "arguments": {},
+         "inputs": {},
+         "outputs": {},
+         "metadata": {},
+         "container": {
+          "name": "",
+          "image": "shubhamdixit863/godockerargo5",
+          "command": [
+            "./app"
+          ],
+          "args": [
+            ""
+          ],
+          "resources": {}
+        }
+      }
+    ],
+    "entrypoint": "whalesay",
+    "arguments": {}
+  }
+}
+}'
